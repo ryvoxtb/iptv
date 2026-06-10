@@ -208,6 +208,9 @@
   "BTV": [
     "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
   ],
+  "somoytv": [
+    "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
+  ],
   "Bein_Sports_3": [
     "https://andro.226503.xyz/checklist/androstreamlivebs3.m3u8"
   ],  
