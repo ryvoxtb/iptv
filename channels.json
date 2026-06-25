@@ -206,7 +206,8 @@
     "https://andro.226503.xyz/checklist/androstreamlivebs2.m3u8"
   ],
   "BTV": [
-    "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8"
+    "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8",
+    "http://198.195.239.50:8095/btv/tracks-v1a1/mono.m3u8"
   ],
   "somoytv": [
     "http://114.130.57.224:8080/Somoy-TV-3Mb/tracks-v1a1/mono.m3u8?token=SkQuhAXZxgBan1",
