@@ -158,7 +158,7 @@
     "https://tvsen6.aynaott.com/asports/index.m3u8"
   ],
   "T_Sports": [
-    "http://198.195.239.50:8095/tsports/tracks-v1a1/mono.m3u8",
+    "http://linux-desktop-production.up.railway.app/tsports/index.m3u8",
     ""
   ],
   "Star_Spts_1": [
