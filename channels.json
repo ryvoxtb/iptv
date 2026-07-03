@@ -1,13 +1,4 @@
-{  
-  "zee-bangla": [
-    "http://linux-desktop-production.up.railway.app/ZEE-BANGLA/index.fmp4.m3u8"
-  ],
-  "star-jalsa-hd": [
-    "https://spirit-books-montgomery-purchase.trycloudflare.com//STAR-JALSHA/index.fmp4.m3u8"
-  ],
-  "jalsha-movies-hd": [
-    "https://spirit-books-montgomery-purchase.trycloudflare.com//JALSHA-MOVIES/index.fmp4.m3u8"
-  ],
+{    
   "btv-chattogram": [
     "https://tvsen6.aynaott.com/btvctg/tracks-v1a1/mono.ts.m3u8"
   ],
@@ -199,10 +190,6 @@
   "Bein_Sports_2": [
     "https://andro.226503.xyz/checklist/androstreamlivebs2.m3u8"
   ],
-  "BTV": [
-    "http://198.195.239.50:8095/btv/tracks-v1a1/mono.m3u8",
-    "http://198.195.239.50:8095/btv/tracks-v1a1/mono.m3u8"
-  ],
   "somoytv": [
     "http://114.130.57.224:8080/Somoy-TV-3Mb/tracks-v1a1/mono.m3u8?token=SkQuhAXZxgBan1",
     "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8"
@@ -212,5 +199,38 @@
   ],  
   "WILLOW_LIVE": [
     "https://tvsen5.aynaott.com/willowhd/index.m3u8"
+  ],
+  "deepto-tv": [
+    "https://owrcovcrpy.gpcdn.net/bpk-tv/1711/output/index.m3u8"
+  ],
+  "g-series": [
+    "https://vods2.aynaott.com/gseriesDrama/tracks-v1a1/mono.ts.m3u8"
+  ],
+  "maasranga-tv": [
+    "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8"
+  ],
+  "srk-tv": [
+    "https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/playlist.m3u8"
+  ],
+  "star-news": [
+    "https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/1701.m3u8"
+  ],
+  "enter-10": [
+    "https://live-bangla.akamaized.net/liveabr/pub-iobanglakp3sff/live_720p/chunks.m3u8"
+  ],
+  "kolkata-tv": [
+    "https://cdn.ottlive.co.in/kolkatatv/tracks-v1a1/mono.m3u8"
+  ],
+  "rongeen-tv": [
+    "https://server.thelegitpro.in/rongeentv/rongeentv/index.m3u8"
+  ],
+  "tv9-bangla": [
+    "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9banaen8yq/liveabr/playlist.m3u8"
+  ],
+  "zee-24-ghanta": [
+    "https://d2dsoyvkr33m05.cloudfront.net/index_1.m3u8"
+  ],
+  "akash-8-tv": [
+    "https://live.thebosstv.com:30443/dwlive/AAKAASH-AATH/chunks.m3u8"
   ]
 }
