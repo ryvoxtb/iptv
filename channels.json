@@ -178,7 +178,7 @@
     "https://rmtv.akamaized.net/hls/live/2043153/rmtv-es-web/bitrate_3.m3u8"
   ],
   "Ptv_sports": [
-    "http://198.195.239.50:8095/ptv/tracks-v1a1/mono.m3u8"
+    "http://103.165.93.31:8095/ptv/tracks-v1a1/mono.m3u8"
   ],
   "Fox_Sports_2": [
     "https://tvsen7.aynaott.com/foxsports2/tracks-v1a1/mono.ts.m3u8"
