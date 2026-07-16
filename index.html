@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Link Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .btn-save {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .status {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        .current-link {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>লিঙ্ক ম্যানেজার</h2>
+    <input type="text" id="linkInput" placeholder="এখানে আপনার লিঙ্কটি দিন...">
+    <button class="btn-save" id="saveBtn">লিঙ্ক সেভ করুন</button>
+    <button class="btn-delete" id="deleteBtn">লিঙ্ক ডিলিট করুন</button>
+    
+    <div class="status" id="statusMessage">ডেটা লোড হচ্ছে...</div>
+    
+    <div class="current-link">
+        <strong>বর্তমান লিঙ্ক:</strong> <span id="currentLinkText">কোনো লিঙ্ক নেই</span>
+    </div>
+</div>
+
+<!-- Firebase SDKs (v10+) -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    // আপনার দেওয়া ফায়ারবেস কনফিগারেশন
+    const firebaseConfig = {
+        apiKey: "AIzaSyBCpqt6OVooTsN__jWBlqbphaSVfkZDjR0",
+        authDomain: "flawless-parity-486609-t3.firebaseapp.com",
+        databaseURL: "https://flawless-parity-486609-t3-default-rtdb.firebaseio.com",
+        projectId: "flawless-parity-486609-t3",
+        storageBucket: "flawless-parity-486609-t3.firebasestorage.app",
+        messagingSenderId: "121220208254",
+        appId: "1:121220208254:web:bae0698f231f0881da6a2f",
+        measurementId: "G-TY1D29X4JL"
+    };
+
+    // Firebase ইনিশিয়ালাইজ করা
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // ডেটাবেজের নির্দিষ্ট পাথ (আমরা 'saved_link' পাথে ডেটা রাখব)
+    const linkRef = ref(db, 'saved_link');
+
+    // DOM Elements
+    const linkInput = document.getElementById('linkInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const deleteBtn = document.getElementById('deleteBtn');
+    const statusMessage = document.getElementById('statusMessage');
+    const currentLinkText = document.getElementById('currentLinkText');
+
+    // ১. ডেটাবেজে কোনো লিঙ্ক থাকলে তা রিয়েলটাইমে স্ক্রিনে দেখানো
+    onValue(linkRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data && data.url) {
+            currentLinkText.innerText = data.url;
+            linkInput.value = data.url; // টেক্সটবক্সেও লিঙ্কটি দেখাবে যাতে এডিট করা যায়
+            statusMessage.innerText = "লিঙ্ক সার্ভার থেকে লোড হয়েছে।";
+        } else {
+            currentLinkText.innerText = "কোনো লিঙ্ক নেই";
+            linkInput.value = "";
+            statusMessage.innerText = "সার্ভারে বর্তমানে কোনো লিঙ্ক নেই।";
+        }
+    });
+
+    // ২. নতুন লিঙ্ক যুক্ত বা আপডেট করা (এটি আগের লিঙ্ককে ওভাররাইট করবে)
+    saveBtn.addEventListener('click', () => {
+        const urlValue = linkInput.value.trim();
+        
+        if (urlValue === "") {
+            alert("অনুগ্রহ করে একটি সঠিক লিঙ্ক দিন!");
+            return;
+        }
+
+        statusMessage.innerText = "সেভ হচ্ছে...";
+
+        // set() ব্যবহার করার কারণে আগের ডেটা মুছে গিয়ে শুধু নতুন ডেটা থাকবে
+        set(linkRef, {
+            url: urlValue,
+            updatedAt: new Date().toISOString()
+        })
+        .then(() => {
+            statusMessage.innerText = "লিঙ্কটি সফলভাবে সেভ হয়েছে!";
+        })
+        .catch((error) => {
+            statusMessage.innerText = "ত্রুটি: " + error.message;
+        });
+    });
+
+    // ৩. লিঙ্ক ডিলিট করা
+    deleteBtn.addEventListener('click', () => {
+        if (confirm("আপনি কি নিশ্চিতভাবে লিঙ্কটি ডিলিট করতে চান?")) {
+            statusMessage.innerText = "ডিলিট হচ্ছে...";
+            
+            remove(linkRef)
+            .then(() => {
+                statusMessage.innerText = "লিঙ্কটি সফলভাবে ডিলিট হয়েছে!";
+            })
+            .catch((error) => {
+                statusMessage.innerText = "ত্রুটি: " + error.message;
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
